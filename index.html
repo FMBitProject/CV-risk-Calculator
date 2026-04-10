@@ -3,161 +3,110 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-sans);background:var(--color-background-tertiary);padding:16px}
-
-.shell{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
-
-/* HEADER */
-.hdr{background:#1e40af;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px}
-.hdr-ico{width:40px;height:40px;background:rgba(255,255,255,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.hdr-t{font-size:15px;font-weight:500;color:#fff}
-.hdr-s{font-size:11px;color:rgba(255,255,255,.7);margin-top:2px}
-.hdr-badge{margin-left:auto;background:rgba(255,255,255,.15);border:0.5px solid rgba(255,255,255,.3);border-radius:99px;padding:3px 11px;font-size:10px;font-weight:500;color:#fff;white-space:nowrap}
-
-/* GRID */
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{background:#fff;border:0.5px solid #e2e8f0;border-radius:12px;padding:18px}
-
-/* Section label */
-.slbl{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#64748b;margin-bottom:14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #f1f5f9;padding-bottom:8px}
-.sdot{width:7px;height:7px;border-radius:50%}
-
-/* Field */
-.field{margin-bottom:11px}
-.flbl{font-size:12px;color:#475569;margin-bottom:5px;display:flex;align-items:center;gap:6px}
-.utag{font-size:10px;background:#f1f5f9;border:0.5px solid #e2e8f0;border-radius:4px;padding:1px 6px;color:#94a3b8}
-select,input[type=number]{width:100%;padding:8px 11px;border:1px solid #e2e8f0;border-radius:8px;background:#f8fafc;color:#1e293b;font-size:13px;transition:all .15s;-webkit-appearance:none;appearance:none}
-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M.5.5l5 5 5-5' stroke='%2394a3b8' stroke-width='1.3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px}
-select:focus,input:focus{outline:none;border-color:#3b82f6;background:#fff;box-shadow:0 0 0 3px rgba(59,130,246,.1)}
-.bp-row{display:grid;grid-template-columns:1fr 12px 1fr;align-items:center;gap:6px}
-.bp-sep{text-align:center;color:#94a3b8;font-size:15px}
-
-/* Checkboxes */
-.cbl{display:flex;flex-direction:column;gap:7px}
-.cbi{display:flex;align-items:flex-start;gap:9px;padding:9px 11px;border:1px solid #e2e8f0;border-radius:8px;cursor:pointer;transition:all .12s;background:#f8fafc}
-.cbi:hover{border-color:#93c5fd;background:#f0f9ff}
-.cbi.on{background:#eff6ff;border-color:#3b82f6}
-.cbi input{margin-top:2px;flex-shrink:0;accent-color:#2563eb;width:14px;height:14px;cursor:pointer}
-.cbt{font-size:12px;color:#475569;line-height:1.45}
-.cbt b{font-weight:500;color:#1e293b}
-
-.reset-btn{width:100%;padding:9px;border:1px solid #e2e8f0;border-radius:8px;background:#f8fafc;color:#64748b;font-size:12px;cursor:pointer;transition:all .12s;margin-top:8px}
-.reset-btn:hover{background:#f1f5f9;color:#334155;border-color:#cbd5e1}
-
-/* ═══ RESULT CARD ═══ */
-.result-wrap{display:flex;flex-direction:column;gap:12px}
-
-/* LIVE INDICATOR — shows which criteria fired */
-.live-strip{background:#fff;border:0.5px solid #e2e8f0;border-radius:12px;padding:16px}
-.live-hd{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#64748b;margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.live-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:blink 1.5s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.crit-grid{display:flex;flex-direction:column;gap:4px}
-.crit-row{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:7px;font-size:11px;transition:all .15s}
-.crit-row.hit{background:#f0fdf4;border:0.5px solid #86efac}
-.crit-row.miss{background:#f8fafc;border:0.5px solid #f1f5f9}
-.crit-row.hit .ci{background:#16a34a;color:#fff}
-.crit-row.miss .ci{background:#e2e8f0;color:#94a3b8}
-.ci{width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0}
-.ct{color:#334155;line-height:1.3;flex:1}
-.crit-row.miss .ct{color:#94a3b8}
-.clvl{font-size:9px;font-weight:600;padding:1px 6px;border-radius:4px;white-space:nowrap;flex-shrink:0}
-.clvl-E{background:#1f2937;color:#d1d5db}
-.clvl-VH{background:#fee2e2;color:#991b1b}
-.clvl-H{background:#fef3c7;color:#854d0e}
-.clvl-M{background:#f0fdf4;color:#166534}
-.clvl-L{background:#f0f9ff;color:#1d4ed8}
-
-/* MAIN RESULT CARD */
-.rcard{border-radius:12px;padding:18px;border:1px solid;transition:all .25s}
-.rcard.none{background:#fff;border-color:#e2e8f0}
+.shell{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.hdr{background:#1e40af;border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:12px}
+.hdr-ico{width:44px;height:44px;background:rgba(255,255,255,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.hdr-t{font-size:17px;font-weight:500;color:#fff}
+.hdr-s{font-size:12px;color:rgba(255,255,255,.7);margin-top:2px}
+.hdr-badge{margin-left:auto;background:rgba(255,255,255,.15);border:0.5px solid rgba(255,255,255,.3);border-radius:99px;padding:4px 14px;font-size:11px;font-weight:500;color:#fff;white-space:nowrap}
+.topdown-banner{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:14px 18px;display:flex;gap:12px;align-items:flex-start}
+.td-ico{width:32px;height:32px;border-radius:8px;background:#dbeafe;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.td-ico svg{width:17px;height:17px}
+.td-title{font-size:14px;font-weight:500;color:#1e3a8a;margin-bottom:4px}
+.td-desc{font-size:13px;color:#1d4ed8;line-height:1.55}
+.rcard{border-radius:12px;padding:20px;border:1px solid;transition:all .25s}
+.rcard.none{background:var(--color-background-primary);border-color:var(--color-border-tertiary)}
 .rcard.extreme{background:#111827;border-color:#374151}
 .rcard.very_high{background:#fff1f2;border-color:#fca5a5}
 .rcard.high{background:#fff7ed;border-color:#fed7aa}
 .rcard.moderate{background:#fefce8;border-color:#fde68a}
 .rcard.low{background:#f0fdf4;border-color:#bbf7d0}
-
-.rbadge{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:99px;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.rbadge{display:inline-flex;align-items:center;gap:6px;padding:5px 13px;border-radius:99px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
 .extreme .rbadge{background:#374151;color:#e5e7eb}
 .very_high .rbadge{background:#fee2e2;color:#991b1b;border:0.5px solid #fca5a5}
 .high .rbadge{background:#ffedd5;color:#9a3412;border:0.5px solid #fed7aa}
 .moderate .rbadge{background:#fef9c3;color:#854d0e;border:0.5px solid #fde68a}
 .low .rbadge{background:#dcfce7;color:#166534;border:0.5px solid #bbf7d0}
-
-.rdot2{width:5px;height:5px;border-radius:50%;animation:blink 2s infinite}
-.extreme .rdot2{background:#9ca3af}
-.very_high .rdot2{background:#ef4444}
-.high .rdot2{background:#f97316}
-.moderate .rdot2{background:#eab308}
-.low .rdot2{background:#22c55e}
-
-.rname{font-size:26px;font-weight:500;line-height:1;margin-bottom:2px}
-.extreme .rname{color:#f9fafb}
-.very_high .rname{color:#991b1b}
-.high .rname{color:#9a3412}
-.moderate .rname{color:#854d0e}
-.low .rname{color:#166534}
-.none .rname{font-size:14px;color:#94a3b8;font-weight:400}
-
-.rsub{font-size:11px;color:#6b7280;margin-bottom:14px}
-.extreme .rsub{color:#6b7280}
-
-.ldl-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.ldlb{border-radius:8px;padding:11px 13px}
-.extreme .ldlb{background:#1f2937}
-.very_high .ldlb{background:#fee2e2}
-.high .ldlb{background:#ffedd5}
-.moderate .ldlb{background:#fef9c3}
-.low .ldlb{background:#dcfce7}
-.ldl-u{font-size:9px;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:4px}
-.extreme .ldl-u{color:#9ca3af}
-.very_high .ldl-u{color:#b91c1c}
-.high .ldl-u{color:#9a3412}
-.moderate .ldl-u{color:#854d0e}
-.low .ldl-u{color:#166534}
-.ldl-v{font-size:22px;font-weight:500;line-height:1}
-.extreme .ldl-v{color:#f3f4f6}
-.very_high .ldl-v{color:#7f1d1d}
-.high .ldl-v{color:#7c2d12}
-.moderate .ldl-v{color:#78350f}
-.low .ldl-v{color:#14532d}
-.ldl-s{font-size:10px;margin-top:2px;color:#94a3b8}
-
-.rec{padding:10px 13px;border-radius:8px;border-left:3px solid;margin-bottom:12px}
-.extreme .rec{background:#1f2937;border-color:#6b7280}
-.very_high .rec{background:#fff1f2;border-color:#ef4444}
-.high .rec{background:#fff7ed;border-color:#f97316}
-.moderate .rec{background:#fefce8;border-color:#eab308}
-.low .rec{background:#f0fdf4;border-color:#22c55e}
-.rec-t{font-size:11px;line-height:1.6}
-.extreme .rec-t{color:#d1d5db}
-.very_high .rec-t{color:#7f1d1d}
-.high .rec-t{color:#7c2d12}
-.moderate .rec-t{color:#78350f}
-.low .rec-t{color:#14532d}
+.rdot2{width:6px;height:6px;border-radius:50%;animation:blink 2s infinite}
+.extreme .rdot2{background:#9ca3af}.very_high .rdot2{background:#ef4444}.high .rdot2{background:#f97316}.moderate .rdot2{background:#eab308}.low .rdot2{background:#22c55e}
+.rname{font-size:32px;font-weight:500;line-height:1;margin-bottom:3px}
+.extreme .rname{color:#f9fafb}.very_high .rname{color:#991b1b}.high .rname{color:#9a3412}.moderate .rname{color:#854d0e}.low .rname{color:#166534}
+.none .rname{font-size:16px;color:#94a3b8;font-weight:400}
+.rsub{font-size:13px;color:#6b7280;margin-bottom:16px}
+.ldl-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.ldlb{border-radius:9px;padding:13px 15px}
+.extreme .ldlb{background:#1f2937}.very_high .ldlb{background:#fee2e2}.high .ldlb{background:#ffedd5}.moderate .ldlb{background:#fef9c3}.low .ldlb{background:#dcfce7}
+.ldl-u{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:5px}
+.extreme .ldl-u{color:#9ca3af}.very_high .ldl-u{color:#b91c1c}.high .ldl-u{color:#9a3412}.moderate .ldl-u{color:#854d0e}.low .ldl-u{color:#166534}
+.ldl-v{font-size:26px;font-weight:500;line-height:1}
+.extreme .ldl-v{color:#f3f4f6}.very_high .ldl-v{color:#7f1d1d}.high .ldl-v{color:#7c2d12}.moderate .ldl-v{color:#78350f}.low .ldl-v{color:#14532d}
+.ldl-s{font-size:11px;margin-top:3px;color:#94a3b8}
+.rec{padding:12px 15px;border-radius:9px;border-left:3px solid;margin-bottom:0}
+.extreme .rec{background:#1f2937;border-color:#6b7280}.very_high .rec{background:#fff1f2;border-color:#ef4444}.high .rec{background:#fff7ed;border-color:#f97316}.moderate .rec{background:#fefce8;border-color:#eab308}.low .rec{background:#f0fdf4;border-color:#22c55e}
+.rec-t{font-size:13px;line-height:1.65}
+.extreme .rec-t{color:#d1d5db}.very_high .rec-t{color:#7f1d1d}.high .rec-t{color:#7c2d12}.moderate .rec-t{color:#78350f}.low .rec-t{color:#14532d}
 .em{font-weight:600}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:20px}
+.slbl{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#64748b;margin-bottom:16px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--color-border-tertiary);padding-bottom:9px}
+.sdot{width:7px;height:7px;border-radius:50%}
+.field{margin-bottom:13px}
+.flbl{font-size:13px;color:#475569;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.utag{font-size:11px;background:#f1f5f9;border:0.5px solid #e2e8f0;border-radius:4px;padding:1px 7px;color:#94a3b8}
+select,input[type=number]{width:100%;padding:9px 12px;border:1px solid #e2e8f0;border-radius:8px;background:#f8fafc;color:#1e293b;font-size:14px;transition:all .15s;-webkit-appearance:none;appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7'%3E%3Cpath d='M.5.5l5 5 5-5' stroke='%2394a3b8' stroke-width='1.3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:30px}
+select:focus,input:focus{outline:none;border-color:#3b82f6;background:#fff;box-shadow:0 0 0 3px rgba(59,130,246,.1)}
+.bp-row{display:grid;grid-template-columns:1fr 14px 1fr;align-items:center;gap:6px}
+.bp-sep{text-align:center;color:#94a3b8;font-size:16px}
+.cbl{display:flex;flex-direction:column;gap:8px}
+.cbi{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid #e2e8f0;border-radius:9px;cursor:pointer;transition:all .12s;background:#f8fafc}
+.cbi:hover{border-color:#93c5fd;background:#f0f9ff}
+.cbi.on{background:#eff6ff;border-color:#3b82f6}
+.cbi input{margin-top:2px;flex-shrink:0;accent-color:#2563eb;width:15px;height:15px;cursor:pointer}
+.cbt{font-size:13px;color:#475569;line-height:1.45}
+.cbt b{font-weight:500;color:#1e293b}
+.reset-btn{width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:9px;background:#f8fafc;color:#64748b;font-size:13px;cursor:pointer;transition:all .12s;margin-top:4px}
+.reset-btn:hover{background:#f1f5f9;color:#334155;border-color:#cbd5e1}
+.live-strip{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:18px}
+.live-hd{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#64748b;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.crit-grid{display:flex;flex-direction:column;gap:5px}
+.crit-row{display:flex;align-items:center;gap:9px;padding:6px 10px;border-radius:8px;font-size:12px;transition:all .15s}
+.crit-row.hit{background:#f0fdf4;border:0.5px solid #86efac}
+.crit-row.miss{background:#f8fafc;border:0.5px solid var(--color-border-tertiary)}
+.crit-row.hit .ci{background:#16a34a;color:#fff}
+.crit-row.miss .ci{background:#e2e8f0;color:#94a3b8}
+.ci{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0}
+.ct{color:#334155;line-height:1.3;flex:1;font-size:12px}
+.crit-row.miss .ct{color:#94a3b8}
+.clvl{font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;white-space:nowrap;flex-shrink:0}
+.clvl-E{background:#1f2937;color:#d1d5db}.clvl-VH{background:#fee2e2;color:#991b1b}.clvl-H{background:#fef3c7;color:#854d0e}.clvl-M{background:#f0fdf4;color:#166534}.clvl-L{background:#f0f9ff;color:#1d4ed8}
 
-/* legend at bottom */
-.legend{background:#fff;border:0.5px solid #e2e8f0;border-radius:12px;padding:14px 16px}
-.leg-hd{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#64748b;margin-bottom:10px}
-.leg-list{display:flex;flex-direction:column;gap:3px}
-.legrow{display:flex;align-items:center;gap:9px;padding:5px 7px;border-radius:7px;border:0.5px solid transparent;transition:all .1s}
+/* LEGEND */
+.legend{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:16px 18px}
+.leg-hd{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:#64748b;margin-bottom:12px}
+.leg-list{display:flex;flex-direction:column;gap:4px}
+.legrow{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;border:0.5px solid transparent;transition:all .1s}
 .legrow.active{border-color:#e2e8f0;background:#f8fafc}
-.legbar{width:4px;height:24px;border-radius:2px;flex-shrink:0}
-.lb-extreme{background:#6b7280}
-.lb-very_high{background:#ef4444}
-.lb-high{background:#f97316}
-.lb-moderate{background:#eab308}
-.lb-low{background:#22c55e}
-.leg-n{font-size:12px;font-weight:500;color:#334155}
-.leg-l{font-size:10px;color:#94a3b8}
+.legbar{width:4px;height:40px;border-radius:2px;flex-shrink:0}
+.lb-extreme{background:#6b7280}.lb-very_high{background:#ef4444}.lb-high{background:#f97316}.lb-moderate{background:#eab308}.lb-low{background:#22c55e}
+.leg-name{font-size:13px;font-weight:500;color:#334155;flex:1}
+.leg-target{display:flex;flex-direction:column;align-items:flex-end;gap:1px}
+.leg-target-lbl{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#94a3b8}
+.leg-target-val{font-size:18px;font-weight:500;line-height:1.1}
+.leg-target-mmol{font-size:11px;color:#94a3b8}
+.t-extreme .leg-target-val{color:#4b5563}
+.t-very_high .leg-target-val{color:#991b1b}
+.t-high .leg-target-val{color:#9a3412}
+.t-moderate .leg-target-val{color:#854d0e}
+.t-low .leg-target-val{color:#166534}
 
-.foot{font-size:10px;color:#94a3b8;line-height:1.6;text-align:center;padding:4px 0}
-
+.foot{font-size:11px;color:#94a3b8;line-height:1.6;text-align:center;padding:4px 0}
 @media(max-width:620px){.grid{grid-template-columns:1fr}}
 </style>
 
 <div class="shell">
-  <!-- HEADER -->
   <div class="hdr">
     <div class="hdr-ico">🫀</div>
     <div>
@@ -167,10 +116,21 @@ select:focus,input:focus{outline:none;border-color:#3b82f6;background:#fff;box-s
     <div class="hdr-badge">ESC/EAS 2025</div>
   </div>
 
-  <!-- INPUT GRID -->
-  <div class="grid">
+  <div class="topdown-banner">
+    <div class="td-ico">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <div>
+      <div class="td-title">Logika Hierarki (Top-Down)</div>
+      <div class="td-desc">Sistem menggunakan logika ESC. Jika kriteria kategori tertinggi terpenuhi, kriteria di bawahnya diabaikan. Hasil berubah otomatis setiap input diubah.</div>
+    </div>
+  </div>
 
-    <!-- CARD A: Kondisi Klinis -->
+  <div id="rcard" class="rcard none">
+    <div class="none rname">Belum ada data — isi form di bawah</div>
+  </div>
+
+  <div class="grid">
     <div class="card">
       <div class="slbl"><span class="sdot" style="background:#3b82f6"></span>A — Kondisi Klinis</div>
       <div class="field">
@@ -207,7 +167,6 @@ select:focus,input:focus{outline:none;border-color:#3b82f6;background:#fff;box-s
       </div>
     </div>
 
-    <!-- CARD B: Data Numerik -->
     <div class="card">
       <div class="slbl"><span class="sdot" style="background:#10b981"></span>B — Data Numerik</div>
       <div class="field">
@@ -237,238 +196,147 @@ select:focus,input:focus{outline:none;border-color:#3b82f6;background:#fff;box-s
     </div>
   </div>
 
-  <!-- RESULT AREA -->
-  <div class="result-wrap">
-
-    <!-- LIVE CRITERIA STRIP -->
-    <div class="live-strip">
-      <div class="live-hd"><span class="live-dot"></span>Status Kriteria — Real-time</div>
-      <div class="crit-grid" id="crit-grid">
-        <div style="font-size:12px;color:#94a3b8;padding:8px">Masukkan data untuk melihat status kriteria.</div>
-      </div>
+  <div class="live-strip">
+    <div class="live-hd"><span class="live-dot"></span>Status Kriteria — Real-time</div>
+    <div class="crit-grid" id="crit-grid">
+      <div style="font-size:13px;color:#94a3b8;padding:8px">Masukkan data untuk melihat status kriteria.</div>
     </div>
-
-    <!-- MAIN RESULT -->
-    <div id="rcard" class="rcard none">
-      <div class="none rname">Belum ada data — isi form di atas</div>
-    </div>
-
-    <!-- LEGEND -->
-    <div class="legend">
-      <div class="leg-hd">Panduan Kategori ESC/EAS 2025</div>
-      <div class="leg-list">
-        <div class="legrow" id="leg-extreme"><div class="legbar lb-extreme"></div><div><div class="leg-n">Extreme risk</div><div class="leg-l">LDL-C &lt;40 mg/dL · &lt;1.0 mmol/L</div></div></div>
-        <div class="legrow" id="leg-very_high"><div class="legbar lb-very_high"></div><div><div class="leg-n">Very high risk</div><div class="leg-l">LDL-C &lt;55 mg/dL · &lt;1.4 mmol/L</div></div></div>
-        <div class="legrow" id="leg-high"><div class="legbar lb-high"></div><div><div class="leg-n">High risk</div><div class="leg-l">LDL-C &lt;70 mg/dL · &lt;1.8 mmol/L</div></div></div>
-        <div class="legrow" id="leg-moderate"><div class="legbar lb-moderate"></div><div><div class="leg-n">Moderate risk</div><div class="leg-l">LDL-C &lt;100 mg/dL · &lt;2.6 mmol/L</div></div></div>
-        <div class="legrow" id="leg-low"><div class="legbar lb-low"></div><div><div class="leg-n">Low risk</div><div class="leg-l">LDL-C &lt;116 mg/dL · &lt;3.0 mmol/L</div></div></div>
-      </div>
-    </div>
-
-    <div class="foot">ESC/EAS 2025 Focused Update · Eur Heart J. ehaf190 · SCORE2 usia 40–70 thn · SCORE2-OP usia 70–89 thn</div>
   </div>
 
+  <div class="legend">
+    <div class="leg-hd">Panduan Kategori ESC/EAS 2025</div>
+    <div class="leg-list">
+      <div class="legrow" id="leg-extreme">
+        <div class="legbar lb-extreme"></div>
+        <div class="leg-name">Extreme risk</div>
+        <div class="leg-target t-extreme">
+          <div class="leg-target-lbl">Target LDL-C</div>
+          <div class="leg-target-val">&lt;40 mg/dL</div>
+          <div class="leg-target-mmol">&lt;1.0 mmol/L</div>
+        </div>
+      </div>
+      <div class="legrow" id="leg-very_high">
+        <div class="legbar lb-very_high"></div>
+        <div class="leg-name">Very high risk</div>
+        <div class="leg-target t-very_high">
+          <div class="leg-target-lbl">Target LDL-C</div>
+          <div class="leg-target-val">&lt;55 mg/dL</div>
+          <div class="leg-target-mmol">&lt;1.4 mmol/L</div>
+        </div>
+      </div>
+      <div class="legrow" id="leg-high">
+        <div class="legbar lb-high"></div>
+        <div class="leg-name">High risk</div>
+        <div class="leg-target t-high">
+          <div class="leg-target-lbl">Target LDL-C</div>
+          <div class="leg-target-val">&lt;70 mg/dL</div>
+          <div class="leg-target-mmol">&lt;1.8 mmol/L</div>
+        </div>
+      </div>
+      <div class="legrow" id="leg-moderate">
+        <div class="legbar lb-moderate"></div>
+        <div class="leg-name">Moderate risk</div>
+        <div class="leg-target t-moderate">
+          <div class="leg-target-lbl">Target LDL-C</div>
+          <div class="leg-target-val">&lt;100 mg/dL</div>
+          <div class="leg-target-mmol">&lt;2.6 mmol/L</div>
+        </div>
+      </div>
+      <div class="legrow" id="leg-low">
+        <div class="legbar lb-low"></div>
+        <div class="leg-name">Low risk</div>
+        <div class="leg-target t-low">
+          <div class="leg-target-lbl">Target LDL-C</div>
+          <div class="leg-target-val">&lt;116 mg/dL</div>
+          <div class="leg-target-mmol">&lt;3.0 mmol/L</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">ESC/EAS 2025 Focused Update · Eur Heart J. ehaf190 · SCORE2 usia 40–70 thn · SCORE2-OP usia 70–89 thn</div>
   <button class="reset-btn" onclick="doReset()">↺ Reset semua input</button>
 </div>
 
 <script>
-const MG_TO_MMOL = 0.02586;
-function toMmol(mg){ return Math.round(mg * MG_TO_MMOL * 100) / 100; }
-
-// All criteria definitions — each has level, key, label, levelTag
-const ALL_CRIT = [
-  // EXTREME
-  { lv:"extreme", k:"recurrent", tag:"E", lbl:"ASCVD berulang (≤2 thn) saat terapi statin maksimal" },
-  { lv:"extreme", k:"poly",      tag:"E", lbl:"Penyakit Polivaskular (≥2 territory)" },
-  // VERY HIGH
-  { lv:"very_high", k:"clinical",   tag:"VH", lbl:"ASCVD klinis atau imaging terdokumentasi" },
-  { lv:"very_high", k:"s2vh",       tag:"VH", lbl:"SCORE2 / SCORE2-OP ≥ 20%" },
-  { lv:"very_high", k:"egfrvh",     tag:"VH", lbl:"eGFR < 30 mL/min/1.73m²" },
-  { lv:"very_high", k:"fha",        tag:"VH", lbl:"FH dengan ASCVD atau ≥1 faktor risiko mayor" },
-  { lv:"very_high", k:"dm_damage",  tag:"VH", lbl:"DM dengan kerusakan organ (mikro/retino/neuro)" },
-  { lv:"very_high", k:"dm_severe",  tag:"VH", lbl:"DM ≥3 faktor risiko mayor atau T1DM onset dini >20 thn" },
-  // HIGH
-  { lv:"high", k:"s2h",    tag:"H", lbl:"SCORE2 10–19%" },
-  { lv:"high", k:"ldlh",   tag:"H", lbl:"LDL-C > 190 mg/dL" },
-  { lv:"high", k:"tch",    tag:"H", lbl:"Total Kolesterol > 310 mg/dL" },
-  { lv:"high", k:"bph",    tag:"H", lbl:"Tekanan darah ≥ 180/110 mmHg" },
-  { lv:"high", k:"egfrh",  tag:"H", lbl:"eGFR 30–59 mL/min/1.73m²" },
-  { lv:"high", k:"dm_nd",  tag:"H", lbl:"DM durasi ≥10 thn tanpa kerusakan organ" },
-  { lv:"high", k:"fh_only",tag:"H", lbl:"FH tanpa ASCVD / faktor risiko mayor" },
-  // MODERATE
-  { lv:"moderate", k:"s2m",     tag:"M", lbl:"SCORE2 5–9%" },
-  { lv:"moderate", k:"dm_young",tag:"M", lbl:"DM muda (T1DM <35th / T2DM <50th) & durasi <10 thn" },
-  // LOW
-  { lv:"low", k:"s2l", tag:"L", lbl:"SCORE2 < 5% (tidak memenuhi kriteria lebih tinggi)" },
+const ALL_CRIT=[
+  {lv:"extreme",k:"recurrent",tag:"E",lbl:"ASCVD berulang (≤2 thn) saat terapi statin maksimal"},
+  {lv:"extreme",k:"poly",tag:"E",lbl:"Penyakit Polivaskular (≥2 territory)"},
+  {lv:"very_high",k:"clinical",tag:"VH",lbl:"ASCVD klinis atau imaging terdokumentasi"},
+  {lv:"very_high",k:"s2vh",tag:"VH",lbl:"SCORE2 / SCORE2-OP ≥ 20%"},
+  {lv:"very_high",k:"egfrvh",tag:"VH",lbl:"eGFR < 30 mL/min/1.73m²"},
+  {lv:"very_high",k:"fha",tag:"VH",lbl:"FH dengan ASCVD atau ≥1 faktor risiko mayor"},
+  {lv:"very_high",k:"dm_damage",tag:"VH",lbl:"DM dengan kerusakan organ (mikro/retino/neuro)"},
+  {lv:"very_high",k:"dm_severe",tag:"VH",lbl:"DM ≥3 faktor risiko mayor atau T1DM onset dini >20 thn"},
+  {lv:"high",k:"s2h",tag:"H",lbl:"SCORE2 10–19%"},
+  {lv:"high",k:"ldlh",tag:"H",lbl:"LDL-C > 190 mg/dL"},
+  {lv:"high",k:"tch",tag:"H",lbl:"Total Kolesterol > 310 mg/dL"},
+  {lv:"high",k:"bph",tag:"H",lbl:"Tekanan darah ≥ 180/110 mmHg"},
+  {lv:"high",k:"egfrh",tag:"H",lbl:"eGFR 30–59 mL/min/1.73m²"},
+  {lv:"high",k:"dm_nd",tag:"H",lbl:"DM durasi ≥10 thn tanpa kerusakan organ"},
+  {lv:"high",k:"fh_only",tag:"H",lbl:"FH tanpa ASCVD / faktor risiko mayor"},
+  {lv:"moderate",k:"s2m",tag:"M",lbl:"SCORE2 5–9%"},
+  {lv:"moderate",k:"dm_young",tag:"M",lbl:"DM muda (T1DM <35th / T2DM <50th) & durasi <10 thn"},
+  {lv:"low",k:"s2l",tag:"L",lbl:"SCORE2 < 5% (tidak memenuhi kriteria lebih tinggi)"},
 ];
-
-const TARGETS = {
-  extreme:   { mg:40,  mmol:"1.0", rec:"<span class='em'>≥50% penurunan dari baseline</span> DAN target &lt;40 mg/dL. Statin + ezetimibe + PCSK9 inhibitor (Class IIb, ESC 2025)." },
-  very_high: { mg:55,  mmol:"1.4", rec:"<span class='em'>≥50% penurunan dari baseline</span> DAN target &lt;55 mg/dL. Statin dosis tinggi ± ezetimibe; tambah PCSK9i atau bempedoic acid jika target belum tercapai." },
-  high:      { mg:70,  mmol:"1.8", rec:"Target &lt;70 mg/dL. <span class='em'>≥50% penurunan</span> direkomendasikan. Statin intensitas sedang–tinggi; bempedoic acid jika intoleran statin (Class I, ESC 2025)." },
-  moderate:  { mg:100, mmol:"2.6", rec:"Target &lt;100 mg/dL. Prioritaskan modifikasi gaya hidup. Terapi farmakologi jika target tidak tercapai." },
-  low:       { mg:116, mmol:"3.0", rec:"Target &lt;116 mg/dL. Fokus gaya hidup: diet sehat jantung, aktivitas fisik rutin, berhenti merokok." },
+const TARGETS={
+  extreme:{mg:40,mmol:"1.0",rec:"<span class='em'>≥50% penurunan dari baseline</span> DAN target &lt;40 mg/dL. Statin + ezetimibe + PCSK9 inhibitor (Class IIb, ESC 2025)."},
+  very_high:{mg:55,mmol:"1.4",rec:"<span class='em'>≥50% penurunan dari baseline</span> DAN target &lt;55 mg/dL. Statin dosis tinggi ± ezetimibe; tambah PCSK9i atau bempedoic acid jika target belum tercapai."},
+  high:{mg:70,mmol:"1.8",rec:"Target &lt;70 mg/dL. <span class='em'>≥50% penurunan</span> direkomendasikan. Statin intensitas sedang–tinggi; bempedoic acid jika intoleran statin (Class I, ESC 2025)."},
+  moderate:{mg:100,mmol:"2.6",rec:"Target &lt;100 mg/dL. Prioritaskan modifikasi gaya hidup. Terapi farmakologi jika target tidak tercapai."},
+  low:{mg:116,mmol:"3.0",rec:"Target &lt;116 mg/dL. Fokus gaya hidup: diet sehat jantung, aktivitas fisik rutin, berhenti merokok."},
 };
-const LABELS = { extreme:"Extreme Risk", very_high:"Very High Risk", high:"High Risk", moderate:"Moderate Risk", low:"Low Risk" };
-const SUBS   = { extreme:"Risiko sangat tinggi — intervensi segera", very_high:"Risiko tinggi — terapi intensif", high:"Risiko tinggi — terapi aktif", moderate:"Risiko sedang — pantau dan modifikasi", low:"Risiko rendah — gaya hidup sehat" };
-
-function gv(id){
-  const el=document.getElementById(id);
-  if(!el)return null;
-  if(el.type==="checkbox")return el.checked;
-  const n=parseFloat(el.value);
-  return isNaN(n)?null:n;
-}
-
-// Evaluate all criteria → returns map { key: bool }
+const LABELS={extreme:"Extreme Risk",very_high:"Very High Risk",high:"High Risk",moderate:"Moderate Risk",low:"Low Risk"};
+const SUBS={extreme:"Risiko sangat tinggi — intervensi segera",very_high:"Risiko tinggi — terapi intensif",high:"Risiko tinggi — terapi aktif",moderate:"Risiko sedang — pantau dan modifikasi",low:"Risiko rendah — gaya hidup sehat"};
+const TAG_CLS={E:"clvl-E",VH:"clvl-VH",H:"clvl-H",M:"clvl-M",L:"clvl-L"};
+const TAG_LBL={E:"Extreme",VH:"Very High",H:"High",M:"Moderate",L:"Low"};
+function gv(id){const el=document.getElementById(id);if(!el)return null;if(el.type==="checkbox")return el.checked;const n=parseFloat(el.value);return isNaN(n)?null:n;}
 function evalAll(){
-  const ascvd=document.getElementById('ascvd').value;
-  const dm   =document.getElementById('dm').value;
-  const s2=gv('score2'), eg=gv('egfr');
-  const sbp=gv('sbp'), dbp=gv('dbp');
-  const ldlc=gv('ldlc'), tc=gv('tc');
-  const fh=gv('fh'), fha=gv('fha');
-  return {
-    // Extreme
-    recurrent: ascvd==="recurrent_on_statins",
-    poly:      ascvd==="polyvascular",
-    // Very High
-    clinical:  ascvd==="clinical_imaging",
-    s2vh:      s2!==null && s2>=20,
-    egfrvh:    eg!==null && eg<30,
-    fha:       fha===true,
-    dm_damage: dm==="organ_damage",
-    dm_severe: dm==="ge3_rf_or_early_t1dm",
-    // High
-    s2h:       s2!==null && s2>=10 && s2<20,
-    ldlh:      ldlc!==null && ldlc>190,
-    tch:       tc!==null && tc>310,
-    bph:       sbp!==null && (sbp>=180 || (dbp!==null && dbp>=110)),
-    egfrh:     eg!==null && eg>=30 && eg<60,
-    dm_nd:     dm==="duration_ge10_no_damage",
-    fh_only:   fh===true && fha!==true,
-    // Moderate
-    s2m:       s2!==null && s2>=5 && s2<10,
-    dm_young:  dm==="young_short",
-    // Low
-    s2l:       s2!==null && s2<5,
-  };
+  const ascvd=document.getElementById('ascvd').value,dm=document.getElementById('dm').value;
+  const s2=gv('score2'),eg=gv('egfr'),sbp=gv('sbp'),dbp=gv('dbp'),ldlc=gv('ldlc'),tc=gv('tc');
+  const fh=gv('fh'),fha=gv('fha');
+  return{recurrent:ascvd==="recurrent_on_statins",poly:ascvd==="polyvascular",clinical:ascvd==="clinical_imaging",s2vh:s2!==null&&s2>=20,egfrvh:eg!==null&&eg<30,fha:fha===true,dm_damage:dm==="organ_damage",dm_severe:dm==="ge3_rf_or_early_t1dm",s2h:s2!==null&&s2>=10&&s2<20,ldlh:ldlc!==null&&ldlc>190,tch:tc!==null&&tc>310,bph:sbp!==null&&(sbp>=180||(dbp!==null&&dbp>=110)),egfrh:eg!==null&&eg>=30&&eg<60,dm_nd:dm==="duration_ge10_no_damage",fh_only:fh===true&&fha!==true,s2m:s2!==null&&s2>=5&&s2<10,dm_young:dm==="young_short",s2l:s2!==null&&s2<5};
 }
-
-// Top-down classification using evaluated map
 function classify(m){
-  if(m.recurrent||m.poly)                                               return "extreme";
-  if(m.clinical||m.s2vh||m.egfrvh||m.fha||m.dm_damage||m.dm_severe)   return "very_high";
-  if(m.s2h||m.ldlh||m.tch||m.bph||m.egfrh||m.dm_nd||m.fh_only)       return "high";
-  if(m.s2m||m.dm_young)                                                 return "moderate";
-  return "low";
+  if(m.recurrent||m.poly)return"extreme";
+  if(m.clinical||m.s2vh||m.egfrvh||m.fha||m.dm_damage||m.dm_severe)return"very_high";
+  if(m.s2h||m.ldlh||m.tch||m.bph||m.egfrh||m.dm_nd||m.fh_only)return"high";
+  if(m.s2m||m.dm_young)return"moderate";
+  return"low";
 }
-
 function hasAnyInput(){
-  if(document.getElementById('ascvd').value!=="none") return true;
-  if(document.getElementById('dm').value!=="none")    return true;
-  for(const id of['score2','egfr','sbp','dbp','ldlc','tc'])
-    if(gv(id)!==null) return true;
-  if(gv('fh')||gv('fha')) return true;
+  if(document.getElementById('ascvd').value!=="none")return true;
+  if(document.getElementById('dm').value!=="none")return true;
+  for(const id of['score2','egfr','sbp','dbp','ldlc','tc'])if(gv(id)!==null)return true;
+  if(gv('fh')||gv('fha'))return true;
   return false;
 }
-
-const TAG_CLS = { E:"clvl-E", VH:"clvl-VH", H:"clvl-H", M:"clvl-M", L:"clvl-L" };
-const TAG_LBL = { E:"Extreme", VH:"Very High", H:"High", M:"Moderate", L:"Low" };
-
 function calc(){
-  const grid=document.getElementById('crit-grid');
-  const rc=document.getElementById('rcard');
-
+  const grid=document.getElementById('crit-grid'),rc=document.getElementById('rcard');
   if(!hasAnyInput()){
-    grid.innerHTML='<div style="font-size:12px;color:#94a3b8;padding:8px">Masukkan data untuk melihat status kriteria.</div>';
-    rc.className='rcard none';
-    rc.innerHTML='<div class="none rname">Belum ada data — isi form di atas</div>';
-    updateLeg(null);
-    return;
+    grid.innerHTML='<div style="font-size:13px;color:#94a3b8;padding:8px">Masukkan data untuk melihat status kriteria.</div>';
+    rc.className='rcard none';rc.innerHTML='<div class="none rname">Belum ada data — isi form di bawah</div>';
+    updateLeg(null);return;
   }
-
-  const m   = evalAll();
-  const lvl = classify(m);
-
-  // ── Render criteria strip ──────────────────────────────────────────
-  // Show: all criteria for the winning level (all rows) +
-  //       any hit criteria from other levels
-  const winning = ALL_CRIT.filter(c=>c.lv===lvl);
-  const others  = ALL_CRIT.filter(c=>c.lv!==lvl && m[c.k]);
-
+  const m=evalAll(),lvl=classify(m);
+  const winning=ALL_CRIT.filter(c=>c.lv===lvl),others=ALL_CRIT.filter(c=>c.lv!==lvl&&m[c.k]);
   let html='';
-  // Show all winning-level criteria with hit/miss
-  winning.forEach(c=>{
-    const hit=!!m[c.k];
-    html+=`<div class="crit-row ${hit?'hit':'miss'}">
-      <span class="ci">${hit?'✓':'·'}</span>
-      <span class="ct">${c.lbl}</span>
-      <span class="clvl ${TAG_CLS[c.tag]}">${TAG_LBL[c.tag]}</span>
-    </div>`;
-  });
-  // Show any other-level hits as informational
-  if(others.length>0){
-    html+=`<div style="font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;padding:6px 8px 2px">Kriteria lain yang juga terpenuhi (diabaikan oleh prioritas)</div>`;
-    others.forEach(c=>{
-      html+=`<div class="crit-row miss" style="opacity:.6">
-        <span class="ci" style="background:#d1fae5;color:#059669">✓</span>
-        <span class="ct" style="color:#94a3b8">${c.lbl}</span>
-        <span class="clvl ${TAG_CLS[c.tag]}">${TAG_LBL[c.tag]}</span>
-      </div>`;
-    });
-  }
+  winning.forEach(c=>{const hit=!!m[c.k];html+=`<div class="crit-row ${hit?'hit':'miss'}"><span class="ci">${hit?'✓':'·'}</span><span class="ct">${c.lbl}</span><span class="clvl ${TAG_CLS[c.tag]}">${TAG_LBL[c.tag]}</span></div>`;});
+  if(others.length>0){html+=`<div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#94a3b8;padding:7px 10px 2px">Kriteria lain yang juga terpenuhi (diabaikan oleh prioritas)</div>`;others.forEach(c=>{html+=`<div class="crit-row miss" style="opacity:.6"><span class="ci" style="background:#d1fae5;color:#059669">✓</span><span class="ct" style="color:#94a3b8">${c.lbl}</span><span class="clvl ${TAG_CLS[c.tag]}">${TAG_LBL[c.tag]}</span></div>`;});}
   grid.innerHTML=html;
-
-  // ── Render result card ─────────────────────────────────────────────
   const t=TARGETS[lvl];
   rc.className=`rcard ${lvl}`;
-  rc.innerHTML=`
-    <div class="rbadge"><span class="rdot2"></span>${LABELS[lvl].toUpperCase()}</div>
-    <div class="rname">${LABELS[lvl]}</div>
-    <div class="rsub">${SUBS[lvl]}</div>
-    <div class="ldl-row">
-      <div class="ldlb">
-        <div class="ldl-u">Target LDL-C</div>
-        <div class="ldl-v">&lt;${t.mg}<span style="font-size:12px;font-weight:400"> mg/dL</span></div>
-        <div class="ldl-s">&lt;${t.mmol} mmol/L</div>
-      </div>
-      <div class="ldlb">
-        <div class="ldl-u">Konversi mmol/L</div>
-        <div class="ldl-v">&lt;${t.mmol}<span style="font-size:12px;font-weight:400"> mmol/L</span></div>
-        <div class="ldl-s">faktor × 0.02586</div>
-      </div>
-    </div>
-    <div class="rec"><div class="rec-t">${t.rec}</div></div>
-  `;
-
+  rc.innerHTML=`<div class="rbadge"><span class="rdot2"></span>${LABELS[lvl].toUpperCase()}</div><div class="rname">${LABELS[lvl]}</div><div class="rsub">${SUBS[lvl]}</div><div class="ldl-row"><div class="ldlb"><div class="ldl-u">Target LDL-C</div><div class="ldl-v">&lt;${t.mg}<span style="font-size:13px;font-weight:400"> mg/dL</span></div><div class="ldl-s">&lt;${t.mmol} mmol/L</div></div><div class="ldlb"><div class="ldl-u">Konversi mmol/L</div><div class="ldl-v">&lt;${t.mmol}<span style="font-size:13px;font-weight:400"> mmol/L</span></div><div class="ldl-s">faktor × 0.02586</div></div></div><div class="rec"><div class="rec-t">${t.rec}</div></div>`;
   updateLeg(lvl);
 }
-
-function updateLeg(lvl){
-  ['extreme','very_high','high','moderate','low'].forEach(l=>{
-    document.getElementById('leg-'+l).classList.toggle('active',l===lvl);
-  });
-}
-
+function updateLeg(lvl){['extreme','very_high','high','moderate','low'].forEach(l=>{document.getElementById('leg-'+l).classList.toggle('active',l===lvl);});}
 function doReset(){
-  document.getElementById('ascvd').value='none';
-  document.getElementById('dm').value='none';
+  document.getElementById('ascvd').value='none';document.getElementById('dm').value='none';
   ['score2','egfr','sbp','dbp','ldlc','tc'].forEach(id=>document.getElementById(id).value='');
-  ['fh','fha'].forEach(id=>{
-    document.getElementById(id).checked=false;
-    document.getElementById('lb-'+id).classList.remove('on');
-  });
+  ['fh','fha'].forEach(id=>{document.getElementById(id).checked=false;document.getElementById('lb-'+id).classList.remove('on');});
   calc();
 }
-
-// Listeners
 ['ascvd','dm'].forEach(id=>document.getElementById(id).addEventListener('change',calc));
 ['score2','egfr','sbp','dbp','ldlc','tc'].forEach(id=>document.getElementById(id).addEventListener('input',calc));
-['fh','fha'].forEach(id=>{
-  document.getElementById(id).addEventListener('change',e=>{
-    e.target.closest('.cbi').classList.toggle('on',e.target.checked);
-    calc();
-  });
-});
+['fh','fha'].forEach(id=>{document.getElementById(id).addEventListener('change',e=>{e.target.closest('.cbi').classList.toggle('on',e.target.checked);calc();});});
 </script>
