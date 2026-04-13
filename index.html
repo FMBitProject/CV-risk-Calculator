@@ -337,7 +337,11 @@ const TARGETS={
   moderate:{mg:100,mmol:"2.6",rec:"Target &lt;100 mg/dL. Prioritaskan modifikasi gaya hidup. Terapi farmakologi jika target tidak tercapai."},
   low:{mg:116,mmol:"3.0",rec:"Target &lt;116 mg/dL. Fokus gaya hidup: diet sehat jantung, aktivitas fisik rutin, berhenti merokok."},
 };
-const LABELS={extreme:"Extreme Risk",very_high:"Very High Risk",high:"High Risk",moderate:"Moderate Risk",low:"Low Risk"};
+
+// --- UBAH 1: NAMA LABEL SESUAI DROPDOWN ---
+const LABELS={extreme:"Ekstrim",very_high:"Sangat Tinggi",high:"Tinggi",moderate:"Sedang",low:"Rendah"};
+// -------------------------------------------
+
 const SUBS={extreme:"Risiko sangat tinggi — intervensi segera",very_high:"Risiko tinggi — terapi intensif",high:"Risiko tinggi — terapi aktif",moderate:"Risiko sedang — pantau dan modifikasi",low:"Risiko rendah — gaya hidup sehat"};
 const TAG_CLS={E:"clvl-E",VH:"clvl-VH",H:"clvl-H",M:"clvl-M",L:"clvl-L"};
 const TAG_LBL={E:"Extreme",VH:"Very High",H:"High",M:"Moderate",L:"Low"};
@@ -380,11 +384,12 @@ function calc(){
   rc.innerHTML=`<div class="rbadge"><span class="rdot2"></span>${LABELS[lvl].toUpperCase()}</div><div class="rname">${LABELS[lvl]}</div><div class="rsub">${SUBS[lvl]}</div><div class="ldl-row"><div class="ldlb"><div class="ldl-u">Target LDL-C</div><div class="ldl-v">&lt;${t.mg}<span style="font-size:13px;font-weight:500"> mg/dL</span></div><div class="ldl-s">&lt;${t.mmol} mmol/L</div></div><div class="ldlb"><div class="ldl-u">Konversi mmol/L</div><div class="ldl-v">&lt;${t.mmol}<span style="font-size:13px;font-weight:500"> mmol/L</span></div><div class="ldl-s">faktor × 0.02586</div></div></div><div class="rec"><div class="rec-t">${t.rec}</div></div>`;
   updateLeg(lvl);
 
-  // KIRIM DATA KE GOOGLE SHEETS
+  // --- UBAH 2: MENGIRIM TEKS ASLI TANPA toLowerCase() ---
   window.parent.postMessage({
     type: 'HASIL_CV',
-    value: LABELS[lvl].toLowerCase()
+    value: LABELS[lvl] 
   }, '*');
+  // ------------------------------------------------------
 }
 function updateLeg(lvl){['extreme','very_high','high','moderate','low'].forEach(l=>{document.getElementById('leg-'+l).classList.toggle('active',l===lvl);});}
 function doReset(){
